@@ -1,0 +1,1672 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laboratorium Ilmu Pemerintahan - Universitas Tadulako</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --red-600: #DC2626;
+            --red-700: #991B1B;
+            --red-500: #EF4444;
+            --green-600: #047857;
+            --green-500: #10B981;
+            --green-100: #D1FAE5;
+            --yellow-300: #FCD34D;
+            --amber-500: #F59E0B;
+            --gray-900: #1F2937;
+            --gray-800: #374151;
+            --gray-700: #475569;
+            --gray-600: #6B7280;
+            --gray-200: #E5E7EB;
+            --gray-100: #F3F4F6;
+            --gray-50: #F9FAFB;
+        }
+
+        body {
+            font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--gray-900);
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--red-600), var(--green-600));
+            border-radius: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: rotate(6deg);
+        }
+
+        .logo-icon span {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            transform: rotate(-6deg);
+        }
+
+        .logo-text h1 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        .logo-text p {
+            font-size: 0.75rem;
+            color: var(--gray-600);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--gray-700);
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--red-600);
+        }
+
+        .nav-cta {
+            background: linear-gradient(135deg, var(--red-600), var(--red-500));
+            color: white;
+            padding: 0.625rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .nav-cta:hover {
+            box-shadow: 0 10px 25px rgba(220, 38, 38, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--red-600);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            padding-top: 80px;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, var(--red-600) 0%, var(--red-700) 50%, var(--green-600) 100%);
+        }
+
+        .hero-pattern {
+            position: absolute;
+            inset: 0;
+            opacity: 0.1;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .hero-content {
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+            padding: 6rem 0;
+        }
+
+        .hero-text {
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+
+        .hero-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: white;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title span {
+            display: block;
+            color: var(--yellow-300);
+        }
+
+        .hero-description {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 0.75rem;
+            font-weight: 700;
+            font-size: 1.125rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--red-600);
+        }
+
+        .btn-primary:hover {
+            box-shadow: 0 20px 40px rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid white;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .hero-image {
+            position: relative;
+        }
+
+        .hero-image-glow {
+            position: absolute;
+            inset: -1rem;
+            background: linear-gradient(135deg, var(--yellow-300), var(--green-500));
+            border-radius: 1.5rem;
+            filter: blur(40px);
+            opacity: 0.3;
+            animation: pulse 3s ease-in-out infinite;
+        }
+
+        .hero-image img {
+            position: relative;
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 1.5rem;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-stat-card {
+            position: absolute;
+            bottom: -2rem;
+            left: -2rem;
+            background: white;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .hero-stat-card-content {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .hero-stat-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--red-500), var(--red-600));
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gray-900);
+        }
+
+        .hero-stat-label {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+        }
+
+        .wave-divider {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+        }
+
+        /* Stats Section */
+        .stats-section {
+            padding: 4rem 0;
+            background: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            transition: transform 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: scale(1.05);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--red-600), var(--green-600));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            color: var(--gray-600);
+            font-weight: 500;
+            margin-top: 0.5rem;
+        }
+
+        /* Section Header */
+        .section {
+            padding: 6rem 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-badge {
+            color: var(--red-600);
+            font-weight: 700;
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin: 0.75rem 0 1rem;
+        }
+
+        .section-description {
+            font-size: 1.25rem;
+            color: var(--gray-600);
+            max-width: 48rem;
+            margin: 0 auto;
+        }
+
+        /* Research Cards */
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .research-card {
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .research-card:hover {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            transform: translateY(-8px);
+        }
+
+        .research-image {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .research-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .research-card:hover .research-image img {
+            transform: scale(1.1);
+        }
+
+        .research-image-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+        }
+
+        .research-status {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .status-ongoing {
+            background: var(--green-500);
+            color: white;
+        }
+
+        .status-completed {
+            background: #3B82F6;
+            color: white;
+        }
+
+        .research-content {
+            padding: 1.5rem;
+        }
+
+        .research-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .tag-governance {
+            background: #FEE2E2;
+            color: #991B1B;
+        }
+
+        .tag-environment {
+            background: #D1FAE5;
+            color: #065F46;
+        }
+
+        .tag-policy {
+            background: #E0E7FF;
+            color: #4338CA;
+        }
+
+        .tag-neutral {
+            background: var(--gray-100);
+            color: var(--gray-700);
+        }
+
+        .research-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 0.75rem;
+            transition: color 0.3s ease;
+        }
+
+        .research-card:hover .research-title {
+            color: var(--red-600);
+        }
+
+        .research-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 0.875rem;
+            color: var(--gray-600);
+            margin-bottom: 1rem;
+        }
+
+        .research-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--red-600);
+            font-weight: 600;
+            text-decoration: none;
+            transition: gap 0.3s ease;
+        }
+
+        .research-card:hover .research-link {
+            gap: 0.75rem;
+        }
+
+        .view-all-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, var(--red-600), var(--red-500));
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 0.75rem;
+            font-weight: 700;
+            text-decoration: none;
+            margin-top: 3rem;
+            transition: all 0.3s ease;
+        }
+
+        .view-all-btn:hover {
+            box-shadow: 0 10px 25px rgba(220, 38, 38, 0.3);
+        }
+
+        /* Facilities Section */
+        .facilities-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .facility-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            border-radius: 0.75rem;
+            transition: background 0.3s ease;
+            cursor: pointer;
+        }
+
+        .facility-item:hover {
+            background: var(--gray-50);
+        }
+
+        .facility-icon {
+            font-size: 2.5rem;
+            flex-shrink: 0;
+            transition: transform 0.3s ease;
+        }
+
+        .facility-item:hover .facility-icon {
+            transform: scale(1.1);
+        }
+
+        .facility-title {
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 0.25rem;
+            transition: color 0.3s ease;
+        }
+
+        .facility-item:hover .facility-title {
+            color: var(--red-600);
+        }
+
+        .facility-desc {
+            font-size: 0.875rem;
+            color: var(--gray-600);
+        }
+
+        .facilities-images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .facilities-images > div:nth-child(2) {
+            margin-top: 2rem;
+        }
+
+        .facility-image {
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .facility-image:hover {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .facility-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .facility-image.tall {
+            height: 256px;
+        }
+
+        .facility-image.short {
+            height: 192px;
+        }
+
+        /* News Section */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .news-card {
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .news-card:hover {
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .news-image {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .news-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .news-card:hover .news-image img {
+            transform: scale(1.1);
+        }
+
+        .news-category {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--red-600);
+        }
+
+        .news-content {
+            padding: 1.5rem;
+        }
+
+        .news-meta {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+            color: var(--gray-500);
+            margin-bottom: 0.75rem;
+        }
+
+        .news-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 1rem;
+            line-height: 1.4;
+            transition: color 0.3s ease;
+        }
+
+        .news-card:hover .news-title {
+            color: var(--red-600);
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 6rem 0;
+            background: linear-gradient(135deg, var(--red-600) 0%, var(--red-700) 50%, var(--green-600) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-pattern {
+            position: absolute;
+            inset: 0;
+            opacity: 0.1;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .cta-content {
+            position: relative;
+            text-align: center;
+            max-width: 64rem;
+            margin: 0 auto;
+        }
+
+        .cta-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+
+        .cta-description {
+            font-size: 1.25rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            max-width: 48rem;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Contact Section */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: var(--gray-700);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--gray-200);
+            border-radius: 0.75rem;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--red-600);
+        }
+
+        .form-group textarea {
+            resize: none;
+        }
+
+        .contact-info-card {
+            background: linear-gradient(135deg, var(--gray-50), white);
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 2px solid var(--gray-100);
+            margin-bottom: 2rem;
+        }
+
+        .contact-info-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .contact-icon.red {
+            background: #FEE2E2;
+            color: var(--red-600);
+        }
+
+        .contact-icon.green {
+            background: var(--green-100);
+            color: var(--green-600);
+        }
+
+        .contact-icon.blue {
+            background: #DBEAFE;
+            color: #2563EB;
+        }
+
+        .contact-item-label {
+            font-weight: 600;
+            color: var(--gray-900);
+            margin-bottom: 0.25rem;
+        }
+
+        .contact-item-text {
+            color: var(--gray-600);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 0.75rem;
+            margin-top: 1rem;
+        }
+
+        .social-link {
+            width: 48px;
+            height: 48px;
+            background: var(--red-600);
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--red-700);
+            transform: translateY(-2px);
+        }
+
+        .office-hours {
+            background: linear-gradient(135deg, #FEE2E2, var(--green-100));
+            padding: 1.5rem;
+            border-radius: 1rem;
+        }
+
+        .office-hours h4 {
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 0.75rem;
+        }
+
+        .office-hours-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            color: var(--gray-700);
+        }
+
+        .office-hours-item span:last-child {
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--gray-900), var(--gray-800));
+            color: white;
+            padding: 4rem 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-about {
+            max-width: 400px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links h4 {
+            font-size: 1.125rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-links a {
+            color: #D1D5DB;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #EF4444;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-bottom-links a {
+            color: #9CA3AF;
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: color 0.3s ease;
+        }
+
+        .footer-bottom-links a:hover {
+            color: #EF4444;
+        }
+
+        /* Floating Button */
+        .floating-btn {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 56px;
+            height: 56px;
+            background: linear-gradient(135deg, var(--red-600), var(--red-500));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            box-shadow: 0 10px 30px rgba(220, 38, 38, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            z-index: 999;
+        }
+
+        .floating-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(220, 38, 38, 0.6);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 0.3;
+            }
+            50% {
+                opacity: 0.5;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .research-grid,
+            .news-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .facilities-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .cta-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="container">
+            <div class="nav-container">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <span>LP</span>
+                    </div>
+                    <div class="logo-text">
+                        <h1>Lab Ilmu Pemerintahan</h1>
+                        <p>Universitas Tadulako</p>
+                    </div>
+                </div>
+
+                <ul class="nav-links">
+                    <li><a href="#home">Beranda</a></li>
+                    <li><a href="#tentang">Tentang</a></li>
+                    <li><a href="#penelitian">Penelitian</a></li>
+                    <li><a href="#fasilitas">Fasilitas</a></li>
+                    <li><a href="#berita">Berita</a></li>
+                    <li><a href="#kontak">Kontak</a></li>
+                    <li><a href="#" class="nav-cta">Portal Mahasiswa</a></li>
+                </ul>
+
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i data-lucide="menu" width="24" height="24"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-pattern"></div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <span class="hero-badge">🏆 Pusat Keunggulan Akademik</span>
+                    
+                    <h1 class="hero-title">
+                        Laboratorium
+                        <span>Ilmu Pemerintahan</span>
+                    </h1>
+                    
+                    <p class="hero-description">
+                        Wahana ilmiah yang unggul dan adaptif dalam mendukung pendidikan, penelitian, 
+                        dan pengabdian kepada masyarakat yang berwawasan lingkungan dan responsif 
+                        terhadap dinamika lokal, nasional, dan global.
+                    </p>
+
+                    <div class="hero-buttons">
+                        <a href="#penelitian" class="btn btn-primary">
+                            Jelajahi Penelitian
+                            <i data-lucide="arrow-right" width="20" height="20"></i>
+                        </a>
+                        <a href="#tentang" class="btn btn-secondary">
+                            Tentang Kami
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hero-image">
+                    <div class="hero-image-glow"></div>
+                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&h=600&fit=crop" alt="Lab Activities">
+                    
+                    <div class="hero-stat-card">
+                        <div class="hero-stat-card-content">
+                            <div class="hero-stat-icon">
+                                <i data-lucide="award" width="32" height="32" color="white"></i>
+                            </div>
+                            <div>
+                                <div class="hero-stat-number">150+</div>
+                                <div class="hero-stat-label">Penelitian Aktif</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <svg class="wave-divider" viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 120L60 110C120 100 240 80 360 70C480 60 600 60 720 65C840 70 960 80 1080 80C1200 80 1320 70 1380 65L1440 60V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="white"/>
+        </svg>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number" data-target="150">0</div>
+                    <div class="stat-label">Penelitian Aktif</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="45">0</div>
+                    <div class="stat-label">Publikasi Ilmiah</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="300">0</div>
+                    <div class="stat-label">Mahasiswa Terlibat</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="20">0</div>
+                    <div class="stat-label">Mitra Kolaborasi</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Section -->
+    <section id="penelitian" class="section" style="background: linear-gradient(to bottom, white, var(--gray-50));">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Penelitian Terkini</div>
+                <h2 class="section-title">Proyek Penelitian Unggulan</h2>
+                <p class="section-description">
+                    Eksplorasi berbagai penelitian inovatif yang responsif terhadap isu-isu pemerintahan lokal, nasional, dan global
+                </p>
+            </div>
+
+            <div class="research-grid">
+                <!-- Research Card 1 -->
+                <div class="research-card">
+                    <div class="research-image">
+                        <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=500&fit=crop" alt="Research">
+                        <div class="research-image-overlay"></div>
+                        <span class="research-status status-ongoing">Ongoing</span>
+                    </div>
+                    <div class="research-content">
+                        <div class="research-tags">
+                            <span class="tag tag-governance">Governance</span>
+                            <span class="tag tag-neutral">Nasional</span>
+                        </div>
+                        <h3 class="research-title">Reformasi Birokrasi Digital di Era Society 5.0</h3>
+                        <div class="research-meta">
+                            <span><i data-lucide="users" width="16" height="16"></i> 8 Peneliti</span>
+                        </div>
+                        <a href="#" class="research-link">
+                            Selengkapnya
+                            <i data-lucide="chevron-right" width="18" height="18"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Research Card 2 -->
+                <div class="research-card">
+                    <div class="research-image">
+                        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&h=500&fit=crop" alt="Research">
+                        <div class="research-image-overlay"></div>
+                        <span class="research-status status-ongoing">Ongoing</span>
+                    </div>
+                    <div class="research-content">
+                        <div class="research-tags">
+                            <span class="tag tag-environment">Environment</span>
+                            <span class="tag tag-neutral">Lokal</span>
+                        </div>
+                        <h3 class="research-title">Tata Kelola Pemerintahan Berbasis Lingkungan</h3>
+                        <div class="research-meta">
+                            <span><i data-lucide="users" width="16" height="16"></i> 6 Peneliti</span>
+                        </div>
+                        <a href="#" class="research-link">
+                            Selengkapnya
+                            <i data-lucide="chevron-right" width="18" height="18"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Research Card 3 -->
+                <div class="research-card">
+                    <div class="research-image">
+                        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=800&h=500&fit=crop" alt="Research">
+                        <div class="research-image-overlay"></div>
+                        <span class="research-status status-completed">Completed</span>
+                    </div>
+                    <div class="research-content">
+                        <div class="research-tags">
+                            <span class="tag tag-policy">Policy</span>
+                            <span class="tag tag-neutral">Internasional</span>
+                        </div>
+                        <h3 class="research-title">Partisipasi Publik dalam Kebijakan Pemerintah</h3>
+                        <div class="research-meta">
+                            <span><i data-lucide="users" width="16" height="16"></i> 10 Peneliti</span>
+                        </div>
+                        <a href="#" class="research-link">
+                            Selengkapnya
+                            <i data-lucide="chevron-right" width="18" height="18"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center;">
+                <a href="#" class="view-all-btn">
+                    Lihat Semua Penelitian
+                    <i data-lucide="arrow-right" width="20" height="20"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Facilities Section -->
+    <section id="fasilitas" class="section" style="background: white;">
+        <div class="container">
+            <div class="facilities-grid">
+                <div>
+                    <div class="section-badge" style="text-align: left;">Fasilitas Unggulan</div>
+                    <h2 class="section-title" style="text-align: left; margin-bottom: 1.5rem;">Infrastruktur Laboratorium Modern</h2>
+                    <p style="font-size: 1.125rem; color: var(--gray-600); margin-bottom: 2rem;">
+                        Dilengkapi dengan berbagai sarana dan prasarana terkini untuk mendukung kegiatan pendidikan, penelitian, dan pengabdian masyarakat.
+                    </p>
+
+                    <div style="margin-bottom: 2rem;">
+                        <div class="facility-item">
+                            <div class="facility-icon">💻</div>
+                            <div>
+                                <div class="facility-title">Lab Komputer & Analisis Data</div>
+                                <div class="facility-desc">30 workstation dengan software analisis terkini</div>
+                            </div>
+                        </div>
+
+                        <div class="facility-item">
+                            <div class="facility-icon">📚</div>
+                            <div>
+                                <div class="facility-title">Perpustakaan Digital</div>
+                                <div class="facility-desc">Akses ke ribuan jurnal dan publikasi</div>
+                            </div>
+                        </div>
+
+                        <div class="facility-item">
+                            <div class="facility-icon">🎥</div>
+                            <div>
+                                <div class="facility-title">Recording Studio</div>
+                                <div class="facility-desc">Fasilitas produksi konten edukatif</div>
+                            </div>
+                        </div>
+
+                        <div class="facility-item">
+                            <div class="facility-icon">🏛️</div>
+                            <div>
+                                <div class="facility-title">Ruang Simulasi Pemerintahan</div>
+                                <div class="facility-desc">Praktik langsung tata kelola</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="#" class="btn" style="border: 2px solid var(--green-600); color: var(--green-600); background: transparent;">
+                        Booking Fasilitas
+                        <i data-lucide="external-link" width="18" height="18"></i>
+                    </a>
+                </div>
+
+                <div class="facilities-images">
+                    <div>
+                        <div class="facility-image tall">
+                            <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=400&h=500&fit=crop" alt="Facility">
+                        </div>
+                        <div class="facility-image short">
+                            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=400&h=300&fit=crop" alt="Facility">
+                        </div>
+                    </div>
+                    <div>
+                        <div class="facility-image short">
+                            <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=400&h=300&fit=crop" alt="Facility">
+                        </div>
+                        <div class="facility-image tall">
+                            <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?w=400&h=500&fit=crop" alt="Facility">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section id="berita" class="section" style="background: linear-gradient(to bottom, var(--gray-50), white);">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Berita & Artikel</div>
+                <h2 class="section-title">Informasi Terkini</h2>
+            </div>
+
+            <div class="news-grid">
+                <article class="news-card">
+                    <div class="news-image">
+                        <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=400&h=300&fit=crop" alt="News">
+                        <span class="news-category">Event</span>
+                    </div>
+                    <div class="news-content">
+                        <div class="news-meta">
+                            <i data-lucide="calendar" width="16" height="16"></i>
+                            <span>10 Des 2024</span>
+                        </div>
+                        <h3 class="news-title">Workshop Analisis Kebijakan Publik Berbasis Data</h3>
+                        <a href="#" class="research-link">
+                            Baca Selengkapnya
+                            <i data-lucide="arrow-right" width="18" height="18"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <div class="news-image">
+                        <img src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=400&h=300&fit=crop" alt="News">
+                        <span class="news-category">Partnership</span>
+                    </div>
+                    <div class="news-content">
+                        <div class="news-meta">
+                            <i data-lucide="calendar" width="16" height="16"></i>
+                            <span>5 Des 2024</span>
+                        </div>
+                        <h3 class="news-title">Kolaborasi Riset dengan Pemerintah Daerah Sulawesi Tengah</h3>
+                        <a href="#" class="research-link">
+                            Baca Selengkapnya
+                            <i data-lucide="arrow-right" width="18" height="18"></i>
+                        </a>
+                    </div>
+                </article>
+
+                <article class="news-card">
+                    <div class="news-image">
+                        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=400&h=300&fit=crop" alt="News">
+                        <span class="news-category">Research</span>
+                    </div>
+                    <div class="news-content">
+                        <div class="news-meta">
+                            <i data-lucide="calendar" width="16" height="16"></i>
+                            <span>1 Des 2024</span>
+                        </div>
+                        <h3 class="news-title">Publikasi Jurnal Internasional tentang Good Governance</h3>
+                        <a href="#" class="research-link">
+                            Baca Selengkapnya
+                            <i data-lucide="arrow-right" width="18" height="18"></i>
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-pattern"></div>
+        <div class="cta-content container">
+            <h2 class="cta-title">Bergabung dalam Riset Kolaboratif</h2>
+            <p class="cta-description">
+                Mari berkontribusi dalam menciptakan tata kelola pemerintahan yang lebih baik, berwawasan lingkungan, 
+                dan responsif terhadap dinamika sosial.
+            </p>
+            <div class="hero-buttons" style="justify-content: center;">
+                <a href="#" class="btn btn-primary">Submit Proposal Penelitian</a>
+                <a href="#" class="btn btn-secondary">Lihat Panduan Riset</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="kontak" class="section" style="background: white;">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-badge">Hubungi Kami</div>
+                <h2 class="section-title">Mari Berkolaborasi</h2>
+            </div>
+
+            <div class="contact-grid">
+                <div>
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <label>Nama Lengkap</label>
+                            <input type="text" placeholder="Masukkan nama Anda">
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" placeholder="nama@email.com">
+                        </div>
+                        <div class="form-group">
+                            <label>Subjek</label>
+                            <input type="text" placeholder="Topik pesan Anda">
+                        </div>
+                        <div class="form-group">
+                            <label>Pesan</label>
+                            <textarea rows="4" placeholder="Tuliskan pesan Anda di sini..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="width: 100%;">Kirim Pesan</button>
+                    </form>
+                </div>
+
+                <div>
+                    <div class="contact-info-card">
+                        <h3 class="contact-info-title">Informasi Kontak</h3>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon red">
+                                <i data-lucide="map-pin" width="24" height="24"></i>
+                            </div>
+                            <div>
+                                <div class="contact-item-label">Alamat</div>
+                                <div class="contact-item-text">
+                                    Fakultas Ilmu Sosial dan Ilmu Politik<br>
+                                    Universitas Tadulako, Palu, Sulawesi Tengah
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon green">
+                                <i data-lucide="phone" width="24" height="24"></i>
+                            </div>
+                            <div>
+                                <div class="contact-item-label">Telepon</div>
+                                <div class="contact-item-text">+62 451 422611</div>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="contact-icon blue">
+                                <i data-lucide="mail" width="24" height="24"></i>
+                            </div>
+                            <div>
+                                <div class="contact-item-label">Email</div>
+                                <div class="contact-item-text">lab.pemerintahan@untad.ac.id</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 2rem;">
+                        <h4 style="font-weight: 700; color: var(--gray-900); margin-bottom: 1rem;">Ikuti Kami</h4>
+                        <div class="social-links">
+                            <a href="#" class="social-link">
+                                <i data-lucide="instagram" width="20" height="20"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i data-lucide="facebook" width="20" height="20"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i data-lucide="twitter" width="20" height="20"></i>
+                            </a>
+                            <a href="#" class="social-link">
+                                <i data-lucide="linkedin" width="20" height="20"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="office-hours">
+                        <h4>Jam Operasional</h4>
+                        <div class="office-hours-item">
+                            <span>Senin - Jumat</span>
+                            <span>08.00 - 16.00 WITA</span>
+                        </div>
+                        <div class="office-hours-item">
+                            <span>Sabtu</span>
+                            <span>08.00 - 12.00 WITA</span>
+                        </div>
+                        <div class="office-hours-item" style="color: var(--gray-500);">
+                            <span>Minggu & Libur</span>
+                            <span>Tutup</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <div class="logo-icon">
+                            <span>LP</span>
+                        </div>
+                        <div class="logo-text">
+                            <h1 style="color: white;">Lab Ilmu Pemerintahan</h1>
+                            <p style="color: #9CA3AF;">Universitas Tadulako</p>
+                        </div>
+                    </div>
+                    <p style="color: #D1D5DB; margin-bottom: 1.5rem;">
+                        Menjadi wahana ilmiah yang unggul dan adaptif dalam mendukung pendidikan, 
+                        penelitian, dan pengabdian kepada masyarakat di bidang Ilmu Pemerintahan.
+                    </p>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Tautan Cepat</h4>
+                    <ul>
+                        <li><a href="#">Tentang Kami</a></li>
+                        <li><a href="#">Penelitian</a></li>
+                        <li><a href="#">Publikasi</a></li>
+                        <li><a href="#">Fasilitas</a></li>
+                        <li><a href="#">Kontak</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links">
+                    <h4>Sumber Daya</h4>
+                    <ul>
+                        <li><a href="#">Portal Mahasiswa</a></li>
+                        <li><a href="#">Submit Proposal</a></li>
+                        <li><a href="#">Database Publikasi</a></li>
+                        <li><a href="#">Booking Fasilitas</a></li>
+                        <li><a href="#">Event Calendar</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p style="color: #9CA3AF; font-size: 0.875rem;">
+                    © 2024 Laboratorium Ilmu Pemerintahan - Universitas Tadulako. All rights reserved.
+                </p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Button -->
+    <button class="floating-btn" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+        <i data-lucide="chevron-up" width="24" height="24"></i>
+    </button>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Stats counter animation
+        let statsAnimated = false;
+        
+        function animateStats() {
+            if (statsAnimated) return;
+            
+            const stats = document.querySelectorAll('.stat-number');
+            
+            stats.forEach(stat => {
+                const target = parseInt(stat.getAttribute('data-target'));
+                const duration = 2000;
+                const increment = target / (duration / 16);
+                let current = 0;
+                
+                const updateCounter = () => {
+                    current += increment;
+                    if (current < target) {
+                        stat.textContent = Math.floor(current) + '+';
+                        requestAnimationFrame(updateCounter);
+                    } else {
+                        stat.textContent = target + '+';
+                    }
+                };
+                
+                updateCounter();
+            });
+            
+            statsAnimated = true;
+        }
+
+        // Trigger stats animation on scroll
+        window.addEventListener('scroll', function() {
+            const statsSection = document.querySelector('.stats-section');
+            const sectionTop = statsSection.getBoundingClientRect().top;
+            const windowHeight = window.innerHeight;
+            
+            if (sectionTop < windowHeight * 0.8) {
+                animateStats();
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form submission (placeholder)
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Terima kasih! Pesan Anda telah dikirim.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>
